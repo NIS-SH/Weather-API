@@ -12,6 +12,7 @@ class WeatherApp(QMainWindow):
         self.text=""
         self.Menu()
 
+    #For the styling of application
     def full_style(self):
         return """
         QMainWindow{
@@ -40,6 +41,7 @@ class WeatherApp(QMainWindow):
         }
         """
 
+    #To select colour for each weather type
     def full_style1(self, id):
         if 200<=id<=521:
             color="233, 33%, 70%"
@@ -84,6 +86,7 @@ class WeatherApp(QMainWindow):
         }}
         """
 
+    #Get specific emoji for every weather
     def get_emoji(self, id):
         if 200 <= id <= 232:
             return "⛈️"
@@ -108,6 +111,7 @@ class WeatherApp(QMainWindow):
         else:
             return "☁️"
 
+    #The main menu of the application
     def Menu(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -132,6 +136,7 @@ class WeatherApp(QMainWindow):
         central_widget.setLayout(vbox)
         self.setStyleSheet(self.full_style())
 
+    #Extracts the weather information from OpenWeatherMap usinf API key
     def weather(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -146,7 +151,7 @@ class WeatherApp(QMainWindow):
             data = response.json()
         except requests.exceptions.HTTPError:
             code = response.status_code
-            match code:
+            match code: #Handling the error messages
                 case 400:
                     self.display_error("Bad Request\nCheck Your Input")
                     return
@@ -212,6 +217,8 @@ class WeatherApp(QMainWindow):
         central_widget.setLayout(vbox)
         self.setStyleSheet(self.full_style1(id))
 
+
+    #Displays the specific error
     def display_error(self, message):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
