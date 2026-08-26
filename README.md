@@ -1,7 +1,5 @@
 # Weather App
 
-### This README is written using AI
-
 This project is a simple desktop weather application built with Python and PyQt5. It lets users enter a city name and view the current temperature, weather description, and a matching emoji.
 
 ## Features
