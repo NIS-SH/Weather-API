@@ -1,4 +1,5 @@
 import sys
+import os
 import requests
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton
 from PyQt5.QtGui import QIcon
@@ -140,8 +141,8 @@ class WeatherApp(QMainWindow):
     def weather(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
-        # Weather_info
-        api_key = "efcd698c77b6c38ed2a66374d2b66ea3"
+        # Gets Weather info from .env
+        api_key = os.getenv("OPENWEATHER_API_KEY")
         city = self.textbox.text()
         url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
 
